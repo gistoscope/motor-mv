@@ -13,3 +13,9 @@
 - Tests: n/a
 - Milestone: n/a · Risk: low
 
+### PR4 — 2025-10-30T03:06:00Z — Add MV-P03 promotion script and canonical assets
+- PR: #4 (472168c) by @gistoscope
+- Scope: n/a
+- Tests: n/a
+- Milestone: n/a · Risk: low
+

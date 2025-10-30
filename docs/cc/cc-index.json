@@ -32,5 +32,22 @@
       "sha": "eb57e602a2c5ea73370e8e5444990e7457e4b43d",
       "author": "gistoscope"
     }
+  },
+  {
+    "id": "PR4",
+    "title": "Add MV-P03 promotion script and canonical assets",
+    "when": "2025-10-30T03:06:00Z",
+    "prompt": "",
+    "scope": [],
+    "tests": [],
+    "milestone": "",
+    "risk": "low",
+    "log": true,
+    "pr": {
+      "number": 4,
+      "url": "https://github.com/gistoscope/motor-mv/pull/4",
+      "sha": "472168c84281c38061acf2cad60cb2e24313d967",
+      "author": "gistoscope"
+    }
   }
 ]

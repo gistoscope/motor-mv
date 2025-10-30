@@ -15,5 +15,22 @@
       "sha": "e06f0ae550ee4729ef6965a870ef642884206910",
       "author": "gistoscope"
     }
+  },
+  {
+    "id": "PR2",
+    "title": "Add MV-P02 microviewer with diagnostics and self-tests",
+    "when": "2025-10-30T02:40:15Z",
+    "prompt": "",
+    "scope": [],
+    "tests": [],
+    "milestone": "",
+    "risk": "low",
+    "log": true,
+    "pr": {
+      "number": 2,
+      "url": "https://github.com/gistoscope/motor-mv/pull/2",
+      "sha": "eb57e602a2c5ea73370e8e5444990e7457e4b43d",
+      "author": "gistoscope"
+    }
   }
 ]

@@ -6,36 +6,54 @@ on:
   push:
     branches: [sandbox]
 
+permissions:
+  contents: read
+
 jobs:
   verify-test:
+    name: verify-test
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20.19.5
+      - name: Setup Node (20.19.5)
         uses: actions/setup-node@v4
         with:
-          node-version: '20.19.5'
-          cache: 'pnpm'
+          node-version: 20.19.5
+          # ВАЖНО: без cache
 
-      - name: Enable Corepack
-        run: corepack enable
+      # Страховка 1  Corepack: положить pnpm в PATH через нативный инструмент Node
+      - name: Corepack prepare pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.12.0 --activate
+          pnpm --version
+        shell: bash
 
-      # В GitHub-hosted runners Corepack уже знает pnpm 9.x; эта команда наглядности ради
-      - name: Show pnpm version
-        run: pnpm -v
+      # Страховка 2  npm -g: даже если corepack по какой-то причине не сработает
+      - name: npm global install pnpm
+        run: |
+          npm i -g pnpm@9.12.0
+          pnpm --version
+        shell: bash
 
-      # Важно для кейса с optional native deps на Linux (rollup):
-      # не замораживаем lock, чтобы не падать из-за optional-deps багов в Linux окружении CI
-      - name: Install deps
-        run: pnpm install --no-frozen-lockfile
+      - name: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
+        shell: bash
 
-      # При необходимости можно прогреть сборку пакетов (раскомментировать следующую строку)
-      # - name: Build all packages
-      #   run: pnpm -r build
+      - name: node scripts/generate-aliases.mjs + --check
+        run: |
+          node scripts/generate-aliases.mjs
+          node scripts/generate-aliases.mjs --check
+        shell: bash
 
-      - name: Run tests recursively
+      - name: pnpm verify
+        run: pnpm verify
+        shell: bash
+
+      - name: pnpm -r test
         run: pnpm -r test
+        shell: bash

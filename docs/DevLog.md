@@ -19,3 +19,9 @@
 - Tests: n/a
 - Milestone: n/a · Risk: low
 
+### PR3 — 2025-10-30T15:43:27Z — MV-P04: promote microviewer into packages/ + add unit tests (Vitest +…
+- PR: #3 (1d438ad) by @gistoscope
+- Scope: n/a
+- Tests: n/a
+- Milestone: n/a · Risk: low
+

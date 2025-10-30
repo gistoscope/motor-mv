@@ -49,5 +49,22 @@
       "sha": "472168c84281c38061acf2cad60cb2e24313d967",
       "author": "gistoscope"
     }
+  },
+  {
+    "id": "PR3",
+    "title": "MV-P04: promote microviewer into packages/ + add unit tests (Vitest +…",
+    "when": "2025-10-30T15:43:27Z",
+    "prompt": "",
+    "scope": [],
+    "tests": [],
+    "milestone": "",
+    "risk": "low",
+    "log": true,
+    "pr": {
+      "number": 3,
+      "url": "https://github.com/gistoscope/motor-mv/pull/3",
+      "sha": "1d438adc568fb67321690ea6940f06a1277d3d92",
+      "author": "gistoscope"
+    }
   }
 ]

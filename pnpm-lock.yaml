@@ -43,6 +43,22 @@ importers:
 
   packages/grasp: {}
 
+  packages/micro-viewer:
+    dependencies:
+      katex:
+        specifier: 0.16.11
+        version: 0.16.11
+    devDependencies:
+      happy-dom:
+        specifier: ^19.0.2
+        version: 19.0.2
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.2
+      vitest:
+        specifier: ^2.1.x
+        version: 2.1.9(@types/node@20.19.18)(happy-dom@19.0.2)(jsdom@27.0.0(postcss@8.5.6))
+
   packages/parser:
     dependencies:
       '@motor/core':
@@ -664,6 +680,10 @@ packages:
     resolution: {integrity: sha512-2JkV3gUZUVrbNA+1sjBOYLsMZ5cEEl8GTFP2a4AVz5hvasAMCQ1D2l2le/cX+pV4N6ZU17zjUahLpIXRrnWL8A==}
     engines: {node: '>=20'}
 
+  commander@8.3.0:
+    resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
+    engines: {node: '>= 12'}
+
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
@@ -819,6 +839,10 @@ packages:
   json5@2.2.3:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
     engines: {node: '>=6'}
+    hasBin: true
+
+  katex@0.16.11:
+    resolution: {integrity: sha512-RQrI8rlHY92OLf3rho/Ts8i/XvjgguEjOkO1BEXcU3N8BqPpSzBNwV/G0Ukr+P/l3ivvJUE/Fa/CwbS6HesGNQ==}
     hasBin: true
 
   lint-staged@16.2.3:
@@ -1744,6 +1768,8 @@ snapshots:
 
   commander@14.0.1: {}
 
+  commander@8.3.0: {}
+
   convert-source-map@2.0.0: {}
 
   css-tree@3.1.0:
@@ -1919,6 +1945,10 @@ snapshots:
   jsesc@3.1.0: {}
 
   json5@2.2.3: {}
+
+  katex@0.16.11:
+    dependencies:
+      commander: 8.3.0
 
   lint-staged@16.2.3:
     dependencies:

@@ -23,37 +23,31 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.19.5
-          # ВАЖНО: без cache
+          # cache отключаем, чтобы исключить побочные эффекты
+          cache: ''
 
-      # Страховка 1  Corepack: положить pnpm в PATH через нативный инструмент Node
-      - name: Corepack prepare pnpm
+      # pnpm через Corepack  этого ДОВОЛЬНО, конфликтов с npm -g не будет
+      - name: Corepack prepare pnpm@9.12.0
+        shell: bash
         run: |
           corepack enable
           corepack prepare pnpm@9.12.0 --activate
           pnpm --version
-        shell: bash
-
-      # Страховка 2  npm -g: даже если corepack по какой-то причине не сработает
-      - name: npm global install pnpm
-        run: |
-          npm i -g pnpm@9.12.0
-          pnpm --version
-        shell: bash
 
       - name: pnpm install --frozen-lockfile
-        run: pnpm install --frozen-lockfile
         shell: bash
+        run: pnpm install --frozen-lockfile
 
       - name: node scripts/generate-aliases.mjs + --check
+        shell: bash
         run: |
           node scripts/generate-aliases.mjs
           node scripts/generate-aliases.mjs --check
-        shell: bash
 
       - name: pnpm verify
-        run: pnpm verify
         shell: bash
+        run: pnpm verify
 
       - name: pnpm -r test
-        run: pnpm -r test
         shell: bash
+        run: pnpm -r test

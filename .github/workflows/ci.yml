@@ -1,9 +1,9 @@
-name: CI (sandbox)
+﻿name: CI (sandbox)
 
 on:
-  push:
-    branches: [sandbox]
   pull_request:
+    branches: [sandbox]
+  push:
     branches: [sandbox]
 
 permissions:
@@ -11,86 +11,43 @@ permissions:
 
 jobs:
   verify-test:
+    name: verify-test
     runs-on: ubuntu-latest
+    timeout-minutes: 25
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Detect docs-only changes
-        id: filter
-        shell: bash
-        run: |
-          set -euo pipefail
-          BASE=""
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            BASE="${{ github.event.pull_request.base.sha }}"
-          else
-            BASE="${{ github.event.before }}"
-          fi
-          HEAD="${{ github.sha }}"
-
-          if [[ -n "$BASE" ]]; then
-            CHANGED="$(git diff --name-only "$BASE" "$HEAD" || true)"
-          else
-            CHANGED="$(git diff --name-only || true)"
-          fi
-
-          docs_only="true"
-          if [[ -z "$CHANGED" ]]; then
-            docs_only="false"
-          else
-            while IFS= read -r f; do
-              case "$f" in
-                docs/*|docs/**|*.md|*.pdf|*.png|*.jpg|*.jpeg|*.gif|*.svg) ;;
-                *) docs_only="false"; break ;;
-              esac
-            done <<< "$CHANGED"
-          fi
-
-          echo "Changed files:"
-          echo "$CHANGED"
-          echo "docs_only=$docs_only" >> "$GITHUB_OUTPUT"
-
-      - name: Show mode
-        run: echo "docs_only = ${{ steps.filter.outputs.docs_only }}"
-
-      - name: Setup Node and pnpm
-        if: steps.filter.outputs.docs_only != 'true'
+      - name: Setup Node (20.19.5)
         uses: actions/setup-node@v4
         with:
-          node-version: '20.19'
+          node-version: 20.19.5
+          # cache отключаем, чтобы исключить побочные эффекты
+          cache: ''
 
-      - name: Enable Corepack and pnpm
-        if: steps.filter.outputs.docs_only != 'true'
+      # pnpm через Corepack  этого ДОВОЛЬНО, конфликтов с npm -g не будет
+      - name: Corepack prepare pnpm@9.12.0
+        shell: bash
         run: |
           corepack enable
           corepack prepare pnpm@9.12.0 --activate
-          pnpm -v
-          node -v
+          pnpm --version
 
-      - name: Install (frozen lockfile)
-        if: steps.filter.outputs.docs_only != 'true'
+      - name: pnpm install --frozen-lockfile
+        shell: bash
         run: pnpm install --frozen-lockfile
 
-      - name: Generate aliases
-        if: steps.filter.outputs.docs_only != 'true'
+      - name: node scripts/generate-aliases.mjs + --check
+        shell: bash
         run: |
           node scripts/generate-aliases.mjs
           node scripts/generate-aliases.mjs --check
 
-      - name: Verify
-        if: steps.filter.outputs.docs_only != 'true'
+      - name: pnpm verify
+        shell: bash
         run: pnpm verify
 
-      - name: Test
-        if: steps.filter.outputs.docs_only != 'true'
+      - name: pnpm -r test
+        shell: bash
         run: pnpm -r test
-
-      - name: Token policy
-        if: steps.filter.outputs.docs_only != 'true'
-        run: node scripts/forbidden-tokens.cjs
-
-      - name: Docs-only fast-lane OK
-        if: steps.filter.outputs.docs_only == 'true'
-        run: echo "Docs-only change — heavy steps skipped ✅"

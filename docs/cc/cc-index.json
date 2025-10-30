@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "id": "PR1",
+    "title": "Add MicroViewer KaTeX prototype",
+    "when": "2025-10-30T02:37:18Z",
+    "prompt": "",
+    "scope": [],
+    "tests": [],
+    "milestone": "",
+    "risk": "low",
+    "log": true,
+    "pr": {
+      "number": 1,
+      "url": "https://github.com/gistoscope/motor-mv/pull/1",
+      "sha": "e06f0ae550ee4729ef6965a870ef642884206910",
+      "author": "gistoscope"
+    }
+  }
+]

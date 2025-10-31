@@ -10,6 +10,7 @@
     }
   },
   "types": "./src/public.ts",
+  "sideEffects": false,
   "dependencies": {
     "katex": "0.16.11"
   }

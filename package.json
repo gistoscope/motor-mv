@@ -19,7 +19,6 @@
     "cc:aggregate": "node tools/cc-digest/aggregate.mjs"
   },
   "devDependencies": {
-    "@motor/micro-viewer": "workspace:*",
     "@types/node": "^20.12.12",
     "happy-dom": "^19.0.2",
     "husky": "^8.0.3",

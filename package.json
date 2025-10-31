@@ -11,6 +11,7 @@
     "test": "pnpm -r test",
     "log2test": "node scripts/log2test.mjs",
     "dev:web": "pnpm --filter @motor/web dev",
+    "mv:dev": "pnpm --filter @motor/web dev -- --open /mv",
     "diag": "node packages/web/demo/server.mjs",
     "start:cli": "pnpm --filter @motor/cli exec motor --demo",
     "prepare": "husky install",
@@ -18,6 +19,7 @@
     "cc:aggregate": "node tools/cc-digest/aggregate.mjs"
   },
   "devDependencies": {
+    "@motor/micro-viewer": "workspace:*",
     "@types/node": "^20.12.12",
     "happy-dom": "^19.0.2",
     "husky": "^8.0.3",

@@ -1,17 +1,16 @@
 {
   "name": "@motor/micro-viewer",
+  "version": "0.0.0",
   "private": true,
   "type": "module",
-  "scripts": {
-    "dev": "node server.mjs",
-    "test": "vitest run"
+  "exports": {
+    ".": {
+      "types": "./src/public.ts",
+      "import": "./src/public.ts"
+    }
   },
+  "types": "./src/public.ts",
   "dependencies": {
     "katex": "0.16.11"
-  },
-  "devDependencies": {
-    "happy-dom": "^19.0.2",
-    "typescript": "^5.9.2",
-    "vitest": "^2.1.x"
   }
 }

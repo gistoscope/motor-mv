@@ -1,4 +1,5 @@
 import React from 'react';
+import { render } from '@motor/micro-viewer';
 import { ErrorBoundary } from './ErrorBoundary';
 
 // Lazy import to avoid pulling dev route if not needed
@@ -29,14 +30,33 @@ function DevHome() {
   );
 }
 
+function MicroViewerDemo() {
+  React.useEffect(() => {
+    render('#mv-root', '\\frac{a+b}{c-d}').catch((error) => {
+      console.error('micro-viewer demo failed', error);
+    });
+  }, []);
+
+  return (
+    <div style={{ padding: 16, fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif' }}>
+      <h1 style={{ margin: '8px 0 16px' }}>Micro Viewer Demo</h1>
+      <p style={{ margin: '8px 0 16px', maxWidth: 480, color: '#555' }}>The KaTeX expression below is rendered through <code>@motor/micro-viewer</code> using the lightweight <code>render()</code> helper.</p>
+      <div id="mv-root" style={{ minHeight: 48, border: '1px solid #e5e7eb', borderRadius: 8, padding: 16, background: '#fafafa' }} />
+    </div>
+  );
+}
+
 export default function App() {
   // Minimal router to avoid external deps: render StepDevRoute only when path matches
   const atDevStep = typeof window !== 'undefined' && window.location.pathname.startsWith('/dev/step');
+  const atMicroViewer = typeof window !== 'undefined' && window.location.pathname.startsWith('/mv');
+
+  const content = atMicroViewer ? <MicroViewerDemo /> : EXP && atDevStep ? <StepDevRoute /> : <DevHome />;
 
   return (
     <ErrorBoundary>
       <React.Suspense fallback={<div style={{ padding: 16 }}>Loading…</div>}>
-        {EXP && atDevStep ? <StepDevRoute /> : <DevHome />}
+        {content}
       </React.Suspense>
     </ErrorBoundary>
   );

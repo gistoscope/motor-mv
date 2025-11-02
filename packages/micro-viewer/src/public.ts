@@ -18,9 +18,19 @@ export type MicroViewer = {
 const DEFAULT_KATEX_VERSION = "0.16.11";
 const KATEX_STYLE_ID = "motor-mv-katex-style";
 const KATEX_SCRIPT_ID = "motor-mv-katex-script";
+const QUIRKS_CLASS = "mv-quirks";
 let katexReady: Promise<KatexModule> | null = null;
 let resolvedKatex: KatexModule | null = null;
-let quirksWarned = false;
+const loggedMessages = new Set<string>();
+
+function logOnce(method: "info" | "warn", key: string, ...args: unknown[]) {
+  if (loggedMessages.has(key)) {
+    return;
+  }
+
+  loggedMessages.add(key);
+  (console[method] as (...data: unknown[]) => void)(...args);
+}
 
 function getDocument(element?: HTMLElement | null): Document {
   if (element?.ownerDocument) {
@@ -97,18 +107,14 @@ function ensureKatexAssets(doc: Document, version: string): HTMLScriptElement {
   return script;
 }
 
-function warnForQuirks(doc: Document) {
-  if (quirksWarned) {
+function applyQuirksHint(host: HTMLElement, doc: Document) {
+  const compat = doc.compatMode;
+  if (compat && compat !== "CSS1Compat") {
+    host.classList.add(QUIRKS_CLASS);
     return;
   }
 
-  const compat = doc.compatMode;
-  if (compat && compat !== "CSS1Compat") {
-    quirksWarned = true;
-    console.warn(
-      "@motor/micro-viewer: KaTeX doesn't work in quirks mode; rendering may be degraded."
-    );
-  }
+  host.classList.remove(QUIRKS_CLASS);
 }
 
 function waitForKatex(doc: Document, version: string): Promise<KatexModule> {
@@ -185,7 +191,11 @@ function waitForKatex(doc: Document, version: string): Promise<KatexModule> {
           script.removeEventListener("load", handleLoad);
           script.removeEventListener("error", handleError);
           scriptFailed = true;
-          console.warn("micro-viewer: failed to load KaTeX from CDN; falling back to local module");
+          logOnce(
+            "info",
+            "mv-cdn-fallback",
+            "micro-viewer: failed to load KaTeX from CDN; falling back to local module"
+          );
           maybeFail();
         };
 
@@ -202,12 +212,22 @@ function waitForKatex(doc: Document, version: string): Promise<KatexModule> {
           .then(finish)
           .catch((error: unknown) => {
             importFailed = true;
-            console.warn("micro-viewer: failed to import local KaTeX module", error);
+            logOnce(
+              "info",
+              "mv-local-import-failed",
+              "micro-viewer: failed to import local KaTeX module",
+              error
+            );
             maybeFail();
           });
       } catch (error) {
         importFailed = true;
-        console.warn("micro-viewer: dynamic KaTeX import threw", error);
+        logOnce(
+          "info",
+          "mv-local-import-throw",
+          "micro-viewer: dynamic KaTeX import threw",
+          error
+        );
         maybeFail();
       }
     });
@@ -273,7 +293,7 @@ class Viewer implements MicroViewer {
     this.version = opts?.katexVersion ?? DEFAULT_KATEX_VERSION;
     this.options = opts;
 
-    warnForQuirks(this.doc);
+    applyQuirksHint(this.host, this.doc);
     this.update(expr);
   }
 

@@ -2,6 +2,9 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
 import { vitestAliases } from "../../scripts/aliases.generated";
 
+// Абсолютный путь к исходнику micro-viewer
+const microViewerSrc = fileURLToPath(new URL("../micro-viewer/src/index.ts", import.meta.url));
+
 export default defineConfig({
   test: {
     environment: "node",
@@ -9,12 +12,10 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      // существующие алиасы проекта
+      // ЯВНЫЙ алиас имеет приоритет и снимает проблему резолва пакета из workspaces
+      "@motor/micro-viewer": microViewerSrc,
+      // Остальные алиасы проекта
       ...vitestAliases,
-      // прямой путь к исходнику micro-viewer для Vitest/Vite
-      "@motor/micro-viewer": fileURLToPath(
-        new URL("../micro-viewer/src/index.ts", import.meta.url)
-      ),
     },
   },
 });

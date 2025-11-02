@@ -2,7 +2,9 @@
 /** @vitest-environment happy-dom */
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { render } from '@motor/micro-viewer';
+// Временный обход package-resolution: импорт напрямую из исходника микровьюера.
+// После фикса package.json в packages/micro-viewer верните на '@motor/micro-viewer'.
+import { render } from '../../micro-viewer/src/index';
 
 let host: HTMLElement | null = null;
 

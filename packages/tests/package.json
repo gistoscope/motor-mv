@@ -6,6 +6,7 @@
     "test": "vitest run"
   },
   "devDependencies": {
+    "@motor/micro-viewer": "workspace:*",
     "vitest": "^3.2.4"
   }
 }

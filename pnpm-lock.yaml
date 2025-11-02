@@ -88,6 +88,9 @@ importers:
       '@motor/core':
         specifier: workspace:*
         version: link:../core
+      '@motor/micro-viewer':
+        specifier: workspace:*
+        version: link:../micro-viewer
       '@motor/parser':
         specifier: workspace:*
         version: link:../parser

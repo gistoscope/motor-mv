@@ -7,7 +7,7 @@
   },
   "scripts": {
     "verify": "node scripts/verify-no-web.mjs && node scripts/verify-pr-template-case.mjs",
-    "build": "pnpm -r build",
+    "build": "tsc -b -v tsconfig.build.json",
     "test": "pnpm -r test",
     "log2test": "node scripts/log2test.mjs",
     "dev:web": "pnpm --filter @motor/web dev",

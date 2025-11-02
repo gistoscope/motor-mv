@@ -6,18 +6,9 @@
     "emitDeclarationOnly": false,
     "noEmit": false,
     "declarationMap": false,
-    "outDir": "dist",
-    "paths": {
-      "@motor/core": ["../core/dist/index.d.ts"],
-      "@motor/core/*": ["../core/dist/*"]
-    }
+    "outDir": "dist"
   },
   "include": [
     "src/**/*"
-  ],
-  "references": [
-    {
-      "path": "../core/tsconfig.build.json"
-    }
   ]
 }

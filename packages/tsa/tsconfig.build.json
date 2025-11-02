@@ -10,16 +10,16 @@
     "baseUrl": ".",
     "paths": {
       "@motor/core": [
-        "../core/src/index.ts"
+        "../core/dist/index.d.ts"
       ],
       "@motor/core/*": [
-        "../core/src/*"
+        "../core/dist/*"
       ],
       "@motor/parser": [
-        "../parser/src/index.ts"
+        "../parser/dist/index.d.ts"
       ],
       "@motor/parser/*": [
-        "../parser/src/*"
+        "../parser/dist/*"
       ]
     }
   },

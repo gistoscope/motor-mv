@@ -20,6 +20,7 @@ viewer.getHost();
 ```
 
 The KaTeX runtime and stylesheet are injected once per document from jsDelivr (default version `0.16.11`).
+If the host page is in quirks mode (no `<!DOCTYPE>`), KaTeX will emit a warning and rendering may degrade.
 
 ## Local demo
 

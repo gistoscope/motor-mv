@@ -1,6 +1,25 @@
 # Micro Viewer
 
-@motor/micro-viewer provides a single `render` helper that ensures a lightweight KaTeX runtime is present and injects anchor-aware markup for hover interactions.
+@motor/micro-viewer ships a lightweight KaTeX embed controller that keeps the DOM in sync with an expression string and wraps KaTeX anchors for hover interactions.
+
+## API
+
+```ts
+import { render } from "@motor/micro-viewer";
+
+const viewer = render(hostOrSelector, expr, {
+  displayMode: false,
+  throwOnError: false,
+  strict: "ignore",
+  katexVersion: "0.16.11",
+});
+
+viewer.update("x^2");
+viewer.destroy();
+viewer.getHost();
+```
+
+The KaTeX runtime and stylesheet are injected once per document from jsDelivr (default version `0.16.11`).
 
 ## Local demo
 
@@ -8,26 +27,18 @@
 pnpm mv:dev
 ```
 
-Then open http://localhost:5173/mv (or whichever port your Vite dev server reports).
+Then open http://localhost:5173/microviewer-s1.html (or whichever port your Vite dev server reports).
 
 ## Embedding example
 
 ```ts
-import { render } from '@motor/micro-viewer';
+import { render } from "@motor/micro-viewer";
 
-async function boot() {
-  const selector = '#mv-root';
-  const expr = '\\frac{a+b}{c-d}';
+const viewer = render("#mv-root", "\\frac{a+b}{c-d}");
 
-  await render(selector, expr);
+viewer.getHost().addEventListener("mouseenter", () => {
+  console.log("hovered micro expression");
+});
 
-  const host = document.querySelector(selector);
-  if (!host) throw new Error('missing host');
-
-  host.addEventListener('mouseenter', () => {
-    console.log('hovered micro expression');
-  });
-}
-
-boot().catch(console.error);
+setTimeout(() => viewer.update("x^2"), 1500);
 ```

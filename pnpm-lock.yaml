@@ -67,6 +67,9 @@ importers:
 
   packages/tests:
     devDependencies:
+      '@motor/micro-viewer':
+        specifier: workspace:*
+        version: link:../micro-viewer
       vitest:
         specifier: ^3.2.4
         version: 3.2.4(@types/node@20.19.18)(happy-dom@19.0.2)(jsdom@27.0.0(postcss@8.5.6))

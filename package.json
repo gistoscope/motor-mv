@@ -6,7 +6,7 @@
     "node": ">=20 <21"
   },
   "scripts": {
-    "verify": "node scripts/verify-no-web.mjs",
+    "verify": "node scripts/verify-no-web.mjs && node scripts/verify-pr-template-case.mjs",
     "build": "pnpm -r build",
     "test": "pnpm -r test",
     "log2test": "node scripts/log2test.mjs",

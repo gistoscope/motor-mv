@@ -1,39 +1,31 @@
 import { defineConfig } from "vitest/config";
 import { fileURLToPath } from "node:url";
-import path from "node:path";
 import { vitestAliases as rawAliases } from "../../scripts/aliases.generated";
 
-// Нормализуем vitestAliases: поддержим и "array", и "object" варианты.
-const aliasEntries = Array.isArray(rawAliases)
-  ? [...rawAliases]
-  : Object.entries(rawAliases || {}).map(([find, replacement]) => ({
-      find,
-      replacement,
-    }));
+// Превращаем любые алиасы в массив правил
+const aliasArray = Array.isArray(rawAliases)
+  ? rawAliases.slice()
+  : Object.entries(rawAliases ?? {}).map(([find, replacement]) => ({ find, replacement }));
 
 // Абсолютный путь к локальному src micro-viewer
-const microViewerSrc = fileURLToPath(
-  new URL("../micro-viewer/src/index.ts", import.meta.url)
-);
+const microViewerSrc = fileURLToPath(new URL("../micro-viewer/src/index.ts", import.meta.url));
 
-// КРИТИЧЕСКОЕ ПРАВИЛО — должно быть ПОСЛЕДНИМ:
-aliasEntries.push({
-  find: /^@motor\/micro-viewer$/,
+// КРИТИЧЕСКОЕ ПРАВИЛО — должно быть ПЕРВЫМ (first match wins)
+aliasArray.unshift({
+  find: "@motor/micro-viewer",
   replacement: microViewerSrc,
 });
 
 export default defineConfig({
   test: {
     environment: "node",
-    include: ["src/**/*.test.ts", "../../tests/sessions/**/*.test.ts"],
-    // Гарантируем inlining, чтобы alias применился до пакетного резолва
     deps: {
       inline: [/@motor\/micro-viewer/],
     },
+    // include оставьте как у вас, если нужно — добавьте свои гло́бберы
   },
   resolve: {
-    alias: aliasEntries,
-    // Явно фиксируем поведение с symlinks (по умолчанию false, но пусть будет явно)
+    alias: aliasArray,
     preserveSymlinks: false,
   },
 });

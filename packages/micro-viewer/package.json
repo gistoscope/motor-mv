@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+
   "exports": {
     ".": {
       "types": "./src/index.ts",
@@ -10,13 +11,17 @@
       "default": "./src/index.ts"
     }
   },
+
   "main": "./src/index.ts",
+  "module": "./src/index.ts",
   "types": "./src/index.ts",
   "files": ["src"],
+
   "scripts": {
     "dev": "node server.mjs",
     "test": "vitest run"
   },
+
   "dependencies": {
     "katex": "0.16.11"
   },

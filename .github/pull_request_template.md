@@ -1,26 +1,10 @@
-# PR mini-passport
+## Summary
+- [ ] Purpose of this PR
+- [ ] Scope (which packages): core / parser / tsa / cli / web
 
-## 1) Что изменено (1–2 фразы)
-<!-- кратко: что именно сделано -->
-
-## 2) Где смотреть (URL/порт/экран)
-<!-- например: http://localhost:4000  или /dev/diag -->
-
-## 3) Как воспроизвести (ровно 3 шага)
-1.
-2.
-3.
-
-## 4) Ожидаемый результат (конкретно)
-- [ ] Anchors: в DOM ≥ 3 элементов с id (KaTeX \htmlId)
-- [ ] Hover: при наведении появляется `.math-token--hovered` на соответствующем токене
-- [ ] Click: клик выбирает токен (`.math-token--selected`)  *(если в рамках PR)*
-- [ ] Brackets: клик по одной скобке выделяет пару  *(если в рамках PR)*
-
-## 5) Риски / откат
-<!-- что может пойти не так; как откатить -->
-
-## 6) Чек-боксы Done
-- [ ] Локально проверено по пункту (3)
-- [ ] /dev/diag зелёный (в части, которую затрагивает PR)
-- [ ] CI зелёный (verify + tests)
+## Checks
+- [ ] `pnpm install --frozen-lockfile`
+- [ ] `node scripts/generate-aliases.mjs` + `--check`
+- [ ] `pnpm verify` (green)
+- [ ] `pnpm -r test` (green)
+- [ ] No artifacts in diff (`node_modules`, `dist`, `build`, `coverage`, `.cache`, `*.log`)

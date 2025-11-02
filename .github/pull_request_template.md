@@ -1,26 +1,29 @@
-# PR mini-passport
+@'
+# Pull Request — Motor-MV
 
-## 1) Что изменено (1–2 фразы)
-<!-- кратко: что именно сделано -->
+## Summary
+Describe the problem and the intent of this change in 2–3 sentences.
 
-## 2) Где смотреть (URL/порт/экран)
-<!-- например: http://localhost:4000  или /dev/diag -->
+## Changes
+- Short, bullet-point list of what changed (source only; no build artifacts).
+- Reference issues/PRs if applicable (e.g., Closes #123).
 
-## 3) Как воспроизвести (ровно 3 шага)
-1.
-2.
-3.
+## Verification
+- [ ] I ran `pnpm install --frozen-lockfile`
+- [ ] I ran `pnpm -r verify` (passed)
+- [ ] I ran `pnpm -r test` (passed)
+- [ ] CI on this PR is green
 
-## 4) Ожидаемый результат (конкретно)
-- [ ] Anchors: в DOM ≥ 3 элементов с id (KaTeX \htmlId)
-- [ ] Hover: при наведении появляется `.math-token--hovered` на соответствующем токене
-- [ ] Click: клик выбирает токен (`.math-token--selected`)  *(если в рамках PR)*
-- [ ] Brackets: клик по одной скобке выделяет пару  *(если в рамках PR)*
+## Branch & Scope
+- Base branch: `sandbox`
+- This PR contains **only** code/docs relevant to the change (no unrelated edits).
 
-## 5) Риски / откат
-<!-- что может пойти не так; как откатить -->
+## UI / Demo (if applicable)
+- Steps to verify locally (e.g., `pnpm -C packages/web dev`, route `/dev/micro-demo`).
+- Screenshots or short notes are welcome.
 
-## 6) Чек-боксы Done
-- [ ] Локально проверено по пункту (3)
-- [ ] /dev/diag зелёный (в части, которую затрагивает PR)
-- [ ] CI зелёный (verify + tests)
+## Checklist
+- [ ] No generated artifacts committed (e.g., `dist/`, `*.zip`, `ui-rich/dist`)
+- [ ] Docs updated when behavior/flags changed
+- [ ] Naming/paths follow repository conventions
+'@ | Set-Content -Encoding UTF8 -NoNewline .github\pull_request_template.md

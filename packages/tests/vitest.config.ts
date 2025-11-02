@@ -7,7 +7,7 @@ const aliasArray = Array.isArray(rawAliases)
   : Object.entries(rawAliases ?? {}).map(([find, replacement]) => ({ find, replacement }));
 
 // Абсолютный путь к локальному src micro-viewer
-const microViewerSrc = fileURLToPath(new URL("../micro-viewer/src/index.ts", import.meta.url));
+const microViewerSrc = fileURLToPath(new URL("../micro-viewer/src/public.ts", import.meta.url));
 
 // КРИТИЧЕСКОЕ правило — должно быть ПЕРВЫМ и ТОЛЬКО точное совпадение
 aliasArray.unshift({

@@ -1,0 +1,13 @@
+:root { --gap: 16px; --pad: 12px; --border: 1px solid #E5E7EB; --bg: #ffffff; --fg: #111111; }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 16px; font-family: system-ui, Segoe UI, Arial, sans-serif; color: var(--fg); background: var(--bg); }
+.mv-card { border: var(--border); border-radius: 12px; padding: var(--pad); background: var(--bg); color: var(--fg); }
+.mv-title { font-weight: 650; margin-bottom: 8px; }
+.mv-display { margin-bottom: var(--gap); }
+#katexOut { min-height: 72px; }
+.mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-items: start; }
+textarea { width: 100%; height: 200px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: 14px; color: var(--fg); background: #fafafa; border: var(--border); border-radius: 8px; padding: 8px; }
+button { padding: 8px 12px; border-radius: 8px; border: var(--border); background: #F3F4F6; cursor: pointer; }
+button:hover { background: #E5E7EB; }
+#diag { color: #b00020; white-space: pre-wrap; margin-top: 8px; }

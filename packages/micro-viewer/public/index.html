@@ -1,44 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Motor • Micro Viewer</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
-      integrity="sha384-TuK+az2YsmiFjCwXTlzAIXazhbugzuDUFcPRl1BDpRP70dNDO7xjoMnIKPQ4FIai"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <header>
-      <h1>Micro Viewer</h1>
-      <p>Render KaTeX expressions and inspect delimiter diagnostics.</p>
-    </header>
-    <main>
-      <section class="editor-panel" aria-label="Expression editor">
-        <label for="expression">Expression</label>
-        <textarea id="expression">
-\\left[\\frac{\\partial}{\\partial x} \\left( \\frac{\\sin(x)}{x^2+1} \\right) + \\Biggl( \\sum_{n=1}^{4} n^2 \\Biggr)\\right]
-        </textarea>
-        <div class="controls">
-          <button id="render-button" type="button">Render</button>
-          <button id="diagnostics-button" type="button">Diagnostics</button>
-        </div>
-      </section>
-      <section class="viewer-panel" aria-live="polite">
-        <div id="output" class="katex-display" role="img" aria-label="KaTeX output"></div>
-        <pre id="diagnostics-panel" hidden></pre>
-      </section>
-    </main>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
-      integrity="sha384-1H4neCEi0aKBslZx2drXr/7EQo1gChX2NDSSSXqoQZnIcEqplLWYwWsEN0pK7nJo"
-      crossorigin="anonymous"
-    ></script>
-    <script type="module" src="./app.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Micro Viewer — S3 Demo</title>
+
+  <link rel="icon" href="./favicon.ico" sizes="any">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css"
+        integrity="sha384-WcoG4HRXMzYzfCgiyfrySxx90XSl2rxY5mnVY5TwtWE6KLrArNKn0T/mOgNL0Mmi"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="./mv.css">
+</head>
+<body data-theme="light" data-density="comfortable">
+  <h1>Micro Viewer — S3 (Plugins & Config)</h1>
+
+  <!-- Display -->
+  <div class="mv-card mv-display" tabindex="0">
+    <div class="mv-title">Display Window (KaTeX)</div>
+    <div id="katexOut"></div>
+  </div>
+
+  <!-- Controls -->
+  <div class="mv-grid">
+    <div class="mv-card">
+      <div class="mv-title">Expression</div>
+      <textarea id="expr">\left[ \frac{\partial}{\partial x} \left( \frac{\sin(x)}{x^2+1} \right) + \Biggl( \sum_{n=1}^{4} n^2 \Biggr) \right]</textarea>
+      <div class="row">
+        <button id="renderBtn">Render</button>
+      </div>
+    </div>
+    <div class="mv-card">
+      <div class="mv-title">Options</div>
+      <div class="row">
+        <label>Theme</label>
+        <select id="optTheme">
+          <option value="light" selected>light</option>
+          <option value="dark">dark</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>Density</label>
+        <select id="optDensity">
+          <option value="comfortable" selected>comfortable</option>
+          <option value="compact">compact</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>Font scale</label>
+        <input type="range" id="optScale" min="0.8" max="1.6" step="0.05" value="1">
+        <span id="scaleVal">1.00</span>
+      </div>
+      <div class="mv-title" style="margin-top:12px;">Diagnostics</div>
+      <div id="diag"></div>
+    </div>
+  </div>
+
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.js"
+          integrity="sha384-J+9dG2KMoiR9hqcFao0IBLwxt6zpcyN68IgwzsCSkbreXUjmNVRhPFTssqdSGjwQ"
+          crossorigin="anonymous"></script>
+  <script type="module" src="./app.js"></script>
+</body>
 </html>

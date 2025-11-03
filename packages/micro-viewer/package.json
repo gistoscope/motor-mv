@@ -1,11 +1,28 @@
 {
   "name": "@motor/micro-viewer",
   "private": true,
+  "version": "0.0.0",
   "type": "module",
+
+  "exports": {
+    ".": {
+      "types": "./src/public.ts",
+      "import": "./src/public.ts",
+      "default": "./src/public.ts"
+    },
+    "./src/*": "./src/*"
+  },
+
+  "main": "./src/public.ts",
+  "module": "./src/public.ts",
+  "types": "./src/public.ts",
+  "files": ["src"],
+
   "scripts": {
     "dev": "node server.mjs",
     "test": "vitest run"
   },
+
   "dependencies": {
     "katex": "0.16.11"
   },

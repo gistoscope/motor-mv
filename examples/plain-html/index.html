@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>micro-viewer — plain HTML (UMD)</title>
+    <style>
+      body { font: 14px/1.4 system-ui, sans-serif; margin: 24px; }
+      .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      textarea { width: 100%; height: 160px; padding: 8px; }
+      .panel { border: 1px solid #ddd; border-radius: 8px; padding: 12px; }
+      .toolbar { display:flex; gap:8px; margin-bottom:8px; }
+      button { padding:6px 10px; }
+    </style>
+  </head>
+  <body>
+    <h1>micro-viewer — UMD demo</h1>
+    <div class="row">
+      <div class="panel">
+        <div class="toolbar">
+          <button id="renderBtn">Render</button>
+          <label> Theme
+            <select id="themeSel">
+              <option>light</option>
+              <option>dark</option>
+            </select>
+          </label>
+          <label> Density
+            <select id="densitySel">
+              <option>cozy</option>
+              <option>compact</option>
+            </select>
+          </label>
+        </div>
+        <textarea id="expr">\\frac{d}{dx}\\left( \\frac{\\sin x}{x^2+1} \\right)</textarea>
+      </div>
+      <div id="app" class="panel"></div>
+    </div>
+
+    <!-- local UMD build -->
+    <script src="../../packages/micro-viewer/dist/umd/micro-viewer.umd.js"></script>
+    <script>
+      const { createController } = window.MicroViewer;
+      const el = document.getElementById('app');
+      const mv = createController(el, { theme: "light", density: "cozy", fontScale: 1.0 });
+
+      function renderNow(){
+        const expr = document.getElementById('expr').value;
+        mv.render(expr);
+      }
+      document.getElementById('renderBtn').addEventListener('click', renderNow);
+      document.getElementById('themeSel').addEventListener('change', e => mv.update({ theme: e.target.value }));
+      document.getElementById('densitySel').addEventListener('change', e => mv.update({ density: e.target.value }));
+    </script>
+  </body>
+</html>

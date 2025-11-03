@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Micro Viewer Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 2rem;
+        line-height: 1.5;
+      }
+
+      #app {
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        min-height: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>@motor/micro-viewer</h1>
+    <p>Initial expression renders immediately, then updates after a short delay.</p>
+    <div id="app"></div>
+
+    <script type="module">
+      import { render } from "@motor/micro-viewer/src/public";
+
+      const host = document.getElementById("app");
+      if (!host) {
+        throw new Error("missing demo host");
+      }
+
+      const viewer = render(host, "a+b");
+      setTimeout(() => viewer.update("x^2"), 1500);
+    </script>
+  </body>
+</html>

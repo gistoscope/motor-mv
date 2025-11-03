@@ -6,11 +6,12 @@
     "node": ">=20 <21"
   },
   "scripts": {
-    "verify": "node scripts/verify-no-web.mjs",
-    "build": "pnpm -r build",
+    "verify": "node scripts/verify-no-web.mjs && node scripts/verify-pr-template-case.mjs",
+    "build": "tsc -b -v tsconfig.build.json",
     "test": "pnpm -r test",
     "log2test": "node scripts/log2test.mjs",
     "dev:web": "pnpm --filter @motor/web dev",
+    "mv:dev": "pnpm --filter @motor/web dev -- --open /mv",
     "diag": "node packages/web/demo/server.mjs",
     "start:cli": "pnpm --filter @motor/cli exec motor --demo",
     "prepare": "husky install",

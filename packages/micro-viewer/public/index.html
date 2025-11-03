@@ -3,52 +3,65 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Micro Viewer</title>
+  <title>Micro Viewer — S3 Demo</title>
 
-  <!-- Favicon (ICO + SVG) -->
   <link rel="icon" href="./favicon.ico" sizes="any">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 
-  <!-- KaTeX CSS (0.16.25, official SRI) -->
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css"
         integrity="sha384-WcoG4HRXMzYzfCgiyfrySxx90XSl2rxY5mnVY5TwtWE6KLrArNKn0T/mOgNL0Mmi"
         crossorigin="anonymous">
-
-  <!-- Layout & readable colors -->
   <link rel="stylesheet" href="./mv.css">
 </head>
-<body>
-  <h1 style="margin:16px 0 12px; font-family: system-ui, Segoe UI, Arial, sans-serif; font-size:18px;">Micro Viewer</h1>
+<body data-theme="light" data-density="comfortable">
+  <h1>Micro Viewer — S3 (Plugins & Config)</h1>
 
-  <!-- Top Display Window -->
-  <div class="mv-card mv-display">
+  <!-- Display -->
+  <div class="mv-card mv-display" tabindex="0">
     <div class="mv-title">Display Window (KaTeX)</div>
     <div id="katexOut"></div>
   </div>
 
-  <!-- Controls & Diagnostics -->
+  <!-- Controls -->
   <div class="mv-grid">
     <div class="mv-card">
       <div class="mv-title">Expression</div>
       <textarea id="expr">\left[ \frac{\partial}{\partial x} \left( \frac{\sin(x)}{x^2+1} \right) + \Biggl( \sum_{n=1}^{4} n^2 \Biggr) \right]</textarea>
-      <div style="margin-top:10px;">
+      <div class="row">
         <button id="renderBtn">Render</button>
       </div>
     </div>
     <div class="mv-card">
-      <div class="mv-title">Diagnostics</div>
+      <div class="mv-title">Options</div>
+      <div class="row">
+        <label>Theme</label>
+        <select id="optTheme">
+          <option value="light" selected>light</option>
+          <option value="dark">dark</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>Density</label>
+        <select id="optDensity">
+          <option value="comfortable" selected>comfortable</option>
+          <option value="compact">compact</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>Font scale</label>
+        <input type="range" id="optScale" min="0.8" max="1.6" step="0.05" value="1">
+        <span id="scaleVal">1.00</span>
+      </div>
+      <div class="mv-title" style="margin-top:12px;">Diagnostics</div>
       <div id="diag"></div>
     </div>
   </div>
 
-  <!-- KaTeX JS (0.16.25, official SRI) -->
   <script defer
           src="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.js"
           integrity="sha384-J+9dG2KMoiR9hqcFao0IBLwxt6zpcyN68IgwzsCSkbreXUjmNVRhPFTssqdSGjwQ"
           crossorigin="anonymous"></script>
-
-  <!-- App logic (external, to avoid inline script issues) -->
   <script type="module" src="./app.js"></script>
 </body>
 </html>

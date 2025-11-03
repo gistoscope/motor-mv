@@ -3,7 +3,7 @@
 // It looks for .katex container under `api.root`, scans .mopen/.mclose spans,
 // computes pairs via a simple stack, and highlights both ends on hover/click.
 
-import type { MVPlugin } from '../runtime/plugins';
+import type { MVPlugin } from '../runtime/types';
 
 function findKatexRoot(root: HTMLElement): HTMLElement | null {
   return root.querySelector('.katex');

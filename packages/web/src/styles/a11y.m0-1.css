@@ -1,0 +1,24 @@
+/* PATH: packages/web/src/styles/a11y.m0-1.css */
+/* Minimal focus-visible and reduced-motion baseline for demos. */
+
+:root {
+  --a11y-ring: 2px;
+  --a11y-gap: 2px;
+  --a11y-color: rgb(59, 130, 246); /* blue-500 */
+}
+
+*:focus {
+  outline: none;
+}
+*:focus-visible {
+  outline: var(--a11y-ring) solid var(--a11y-color);
+  outline-offset: var(--a11y-gap);
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,3 +1,4 @@
+export const MV_KATEX_ASSETS_SELECTOR = '[data-mv-katex]';
 /* SSR-safe: no DOM touch at module top-level */
 export type KatexAssetsHandle = {
   /** KaTeX assets are persistent; dispose is a no-op to avoid flicker. */

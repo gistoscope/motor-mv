@@ -1,3 +1,4 @@
+import { ensureKatexAssetsOnce } from './runtime/assets/katex';
 type KatexModule = {
   renderToString(expression: string, options?: Record<string, unknown>): string;
 };

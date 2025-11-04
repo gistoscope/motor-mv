@@ -1,4 +1,7 @@
 import { ensureKatexAssetsOnce } from './runtime/assets/katex';
+import { MVEventBus } from './events';
+import { installHoverSelectBridge } from './runtime/events/hover-select';
+
 type KatexModule = {
   renderToString(expression: string, options?: Record<string, unknown>): string;
 };

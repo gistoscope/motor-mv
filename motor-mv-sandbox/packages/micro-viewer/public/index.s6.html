@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Micro Viewer S6 Demo (JS)</title>
+  <link rel="stylesheet" href="mv.s6.css">
+  <!-- JS build: load ESM JS (no .ts in browser) -->
+  <script defer type="module" src="../src/app.s6.3.js"></script>
+</head>
+<body>
+  <div id="mv-toolbar">
+    <button id="mv-undo">Undo</button>
+    <button id="mv-redo">Redo</button>
+    <button id="mv-reset">Reset</button>
+    <button id="mv-help">Help</button>
+  </div>
+  <div id="mv-container" data-mv-root></div>
+</body>
+</html>

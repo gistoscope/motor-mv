@@ -1,0 +1,1 @@
+Unzip into repo root so that packages/micro-viewer/src/app.s6.3.js is replaced.

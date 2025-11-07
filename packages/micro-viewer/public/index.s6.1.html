@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Micro Viewer S6.1 — Demo (Input Window)</title>
+  <link rel="stylesheet" href="mv.s6.css">
+  <script defer type="module" src="../src/app.s6.1.js"></script>
+</head>
+<body>
+  <div id="mv-toolbar">
+    <button id="mv-undo">Undo</button>
+    <button id="mv-redo">Redo</button>
+    <button id="mv-reset">Reset</button>
+    <button id="mv-help">Help</button>
+  </div>
+
+  <main class="mv-grid">
+    <section class="mv-panel">
+      <h2>Display Window</h2>
+      <div id="mv-container" class="mv-display"></div>
+    </section>
+
+    <section class="mv-panel">
+      <h2>Input Window</h2>
+      <div class="mv-input-row">
+        <label for="mv-format">Format:</label>
+        <select id="mv-format">
+          <option value="ascii">ASCII</option>
+          <option value="latex">LaTeX</option>
+        </select>
+        <span class="mv-note">debounce 200 ms</span>
+      </div>
+      <textarea id="mv-input" rows="6" spellcheck="false"></textarea>
+    </section>
+  </main>
+</body>
+</html>

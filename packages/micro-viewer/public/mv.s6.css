@@ -1,0 +1,29 @@
+/* Stronger visual treatment to ensure hover is obvious */
+#mv-toolbar {
+  position: fixed; top: 10px; right: 10px; display: flex; gap: 8px;
+  z-index: 9999;
+}
+#mv-toolbar button { padding: 4px 8px; border-radius: 6px; border: 1px solid #ccc; background:#f8f8f8; cursor:pointer; }
+#mv-toolbar button:hover { background:#e0e0e0; }
+
+main.mv-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:80px auto; width:92%; }
+.mv-panel { border:1px solid #ddd; border-radius:8px; padding:12px; }
+.mv-display { font-size:1.6em; text-align:center; min-height:80px; padding:12px; user-select:text; white-space:pre-wrap; }
+
+.mv-input-row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+#mv-input { width:100%; padding:8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+/* Selection (neutral, blue) */
+.sel { background: rgba(52, 152, 219, 0.28); border-radius: 4px; }
+
+/* Hover states (Engine-gated) — make them more visible */
+.paren { padding: 0 2px; border-radius: 4px; transition: box-shadow .12s ease, background-color .12s ease, outline-width .12s ease; }
+.mark-ok      { outline: 3px solid rgba(46, 204, 113, .95);  background: rgba(46, 204, 113, .22); box-shadow: 0 0 0 3px rgba(46,204,113,.15); }
+.mark-blocked { outline: 3px solid rgba(231, 76, 60,  .95);  background: rgba(231, 76, 60,  .22); box-shadow: 0 0 0 3px rgba(231,76,60,.15); }
+.mark-noop    { outline: 3px solid rgba(155, 89, 182, .95);  background: rgba(155, 89, 182, .22); box-shadow: 0 0 0 3px rgba(155,89,182,.15); }
+
+.mv-menu { position: fixed; background: #fff; border: 1px solid #ccc; border-radius: 10px; padding: 8px;
+  display:flex; gap:8px; z-index:10000; box-shadow: 0 8px 18px rgba(0,0,0,.14); }
+.mv-menu[hidden] { display:none; }
+.mv-menu button { padding:6px 10px; border-radius:8px; border:1px solid #ccc; background:#fafafa; cursor:pointer; }
+.mv-menu button:hover { background:#eee; }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Micro Viewer S6.3 — Hover (Engine‑gated) + Click</title>
+  <!-- Inline SVG favicon (blue dot) to restore the tab icon without extra files -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%233498db'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="mv.s6.css">
+  <script defer type="module" src="../src/app.s6.3.js"></script>
+</head>
+<body>
+  <div id="mv-toolbar">
+    <button id="mv-undo">Undo</button>
+    <button id="mv-redo">Redo</button>
+    <button id="mv-reset">Reset</button>
+    <button id="mv-help">Help</button>
+  </div>
+
+  <main class="mv-grid">
+    <section class="mv-panel">
+      <h2>Display Window</h2>
+      <div id="mv-container" class="mv-display"></div>
+    </section>
+
+    <section class="mv-panel">
+      <h2>Input Window</h2>
+      <div class="mv-input-row">
+        <label for="mv-format">Format:</label>
+        <select id="mv-format">
+          <option value="ascii">ASCII</option>
+          <option value="latex">LaTeX</option>
+        </select>
+        <span class="mv-note">debounce 200 ms</span>
+      </div>
+      <textarea id="mv-input" rows="6" spellcheck="false"></textarea>
+    </section>
+  </main>
+
+  <div id="mv-menu" class="mv-menu" hidden>
+    <button data-action="wrap">Wrap in parentheses</button>
+    <button data-action="unwrap">Remove parentheses</button>
+    <button data-action="explain">Explain</button>
+  </div>
+</body>
+</html>
